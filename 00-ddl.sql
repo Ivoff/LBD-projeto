@@ -9,11 +9,11 @@ drop table if exists EquipeMaratona cascade;
 
 create table Perfil(
     id serial primary key,
-    nome_completo varchar(255) not null,
-    rga varchar(255) not null unique,
-    siapi varchar(255) not null unique,
-    cpf varchar(255) not null unique,
-    codigo_uri varchar(255) not null unique,
+    nome_completo varchar not null,
+    rga varchar not null unique,
+    siapi varchar not null unique,
+    cpf varchar not null unique,
+    codigo_uri varchar not null unique,
     status_participante boolean not null,
     status_voluntario boolean not null,
     status_tecnico boolean not null
@@ -23,8 +23,8 @@ create table Perfil(
 create table Equipe(
     id serial primary key,
     criador_perfil_id integer not null references Perfil (id),
-    nome varchar(255) not null unique,
-    descricao varchar(255)
+    nome varchar not null unique,
+    descricao varchar
 );
 
 create table Membro(
@@ -35,8 +35,8 @@ create table Membro(
 
 create table Maratona(
     id serial primary key ,
-    nome varchar(255) not null unique,
-    imagem_url varchar(255),
+    nome varchar not null unique,
+    imagem_url varchar,
     inscricao_comeco timestamp with time zone not null,
     inscricao_termino timestamp with time zone not null,
     horario_comeco timestamp with time zone not null,
