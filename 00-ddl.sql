@@ -61,9 +61,10 @@ create table Questoes(
 );
 
 create table MaratonaQuestoes(
-    id serial,
+    id serial primary key,
     maratona_id int not null references Maratona(id),
-    questao_id int not null references Questoes(id)
+    questao_id int not null references Questoes(id),
+    constraint maratona_questao_fkey (maratona_id, questao_id) UNIQUE
 );
 
 create table EquipeMaratona(
@@ -71,7 +72,8 @@ create table EquipeMaratona(
     maratona_id int not null references Maratona(id),
     equipe_id int not null references Equipe(id),
     status_equipe int not null,
-    pontuacao_final double precision not null
+    pontuacao_final double precision not null,
+    constraint equipe_maratona (maratona_id, equipe_id) UNIQUE
 );
 
 alter table EquipeMaratona add column equipe_id integer references Equipe(id);
