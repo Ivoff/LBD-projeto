@@ -30,7 +30,8 @@ create table Equipe(
 create table Membro(
     id serial,
     perfil_id integer not null references Perfil (id),
-    equipe_id integer not null references Equipe (id)
+    equipe_id integer not null references Equipe (id),
+    constraint perfil_equipe_fkey UNIQUE (perfil_id, equipe_id)
 );
 
 create table Maratona(
@@ -49,7 +50,8 @@ create table Participante(
     id serial primary key,
     perfil_id int not null references  Perfil(id),
     maratona_id int not null references Maratona(id),
-    tipo_participante int not null
+    tipo_participante int not null,
+    constraint perfil_maratona_fkey UNIQUE (perfil_id, maratona_id)
 );
 
 create table Questoes(
