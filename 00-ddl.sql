@@ -68,6 +68,8 @@ create table MaratonaQuestoes(
 
 create table EquipeMaratona(
     id serial primary key,
+    maratona_id int not null references Maratona(id),
+    equipe_id int not null references Equipe(id),
     status_equipe int not null,
     pontuacao_final double precision not null
 );
