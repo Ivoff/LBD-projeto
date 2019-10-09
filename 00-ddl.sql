@@ -75,9 +75,3 @@ create table EquipeMaratona(
     pontuacao_final double precision not null,
     constraint equipe_maratona (maratona_id, equipe_id) UNIQUE
 );
-
-alter table EquipeMaratona add column equipe_id integer references Equipe(id);
-alter table EquipeMaratona add column maratona_id integer references maratona(id);
-alter table EquipeMaratona alter column equipe_id set not null;
-alter table EquipeMaratona alter column maratona_id set not null;
-
