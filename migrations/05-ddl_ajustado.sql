@@ -75,3 +75,9 @@ create table EquipeMaratona(
     pontuacao_final double precision not null,
     constraint equipe_maratona unique(maratona_id, equipe_id)
 );
+
+create table equipequestao(
+	id serial primary key,
+	equipe_id int references equipe(id) not null,
+	maratona_id int references maratona(id) not null
+);
