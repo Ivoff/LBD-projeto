@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION perfil_validation_maratona(
     maratonaId INTEGER
 ) returns BOOLEAN AS $$
 DECLARE
-    interacoesPerfilComMaratona INTEGER
+    interacoesPerfilComMaratona INTEGER;
 BEGIN
     SELECT COUNT(*) AS quantidade
     INTO interacoesPerfilComMaratona
@@ -33,5 +33,7 @@ BEGIN
         RETURN false;
     ELSE
         RETURN true;
-END; $$
+    END IF; 
+END; 
+$$
 LANGUAGE plpgsql;
