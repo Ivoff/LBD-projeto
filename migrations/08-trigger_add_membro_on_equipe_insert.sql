@@ -7,8 +7,8 @@ $$
 	end;
 $$ language plpgsql;
 
-/*create trigger add_membro_after_insert_on_equipe
+create trigger add_membro_after_insert_on_equipe
 after insert
 on equipe
 for each row
-execute procedure add_membro_equipe_on_insert();*/
+execute procedure add_membro_equipe_on_insert();
