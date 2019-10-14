@@ -1,6 +1,5 @@
-drop database if exists maratona;
-
-create database maratona;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 create table Perfil(
     id serial primary key,
