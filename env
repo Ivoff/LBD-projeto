@@ -1,5 +1,5 @@
 export HOST=localhost
-export PORT=5433
+export PORT=5432
 export DB_USERNAME=postgres
 export DB_PASSWORD=55
 export DB_DATABASE=maratona
