@@ -1,11 +1,8 @@
-drop table if exists Perfil cascade;
-drop table if exists Equipe cascade;
-drop table if exists Membro cascade;
-drop table if exists Maratona cascade;
-drop table if exists Participante cascade;
-drop table if exists Questoes cascade;
-drop table if exists MaratonaQuestoes cascade;
-drop table if exists EquipeMaratona cascade;
+drop database if exists maratona;
+
+create dabase maratona;
+
+use maratona;
 
 create table Perfil(
     id serial primary key,
@@ -64,7 +61,7 @@ create table MaratonaQuestoes(
     id serial primary key,
     maratona_id int not null references Maratona(id),
     questao_id int not null references Questoes(id),
-    constraint maratona_questao_fkey (maratona_id, questao_id) unique
+    constraint maratona_questao_fkey unique (maratona_id, questao_id)
 );
 
 create table EquipeMaratona(
@@ -73,5 +70,12 @@ create table EquipeMaratona(
     equipe_id int not null references Equipe(id),
     status_equipe int not null,
     pontuacao_final double precision not null,
-    constraint equipe_maratona (maratona_id, equipe_id) unique
+    constraint equipe_maratona unique (maratona_id, equipe_id)
+);
+
+
+create table equipequestao(
+	id serial primary key,
+	equipe_id int references equipe(id) not null,
+	maratona_id int references maratona(id) not null
 );
