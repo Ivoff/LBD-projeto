@@ -1,8 +1,6 @@
 drop database if exists maratona;
 
-create dabase maratona;
-
-use maratona;
+create database maratona;
 
 create table Perfil(
     id serial primary key,
