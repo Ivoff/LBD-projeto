@@ -1,6 +1,3 @@
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-
 create table Perfil(
     id serial primary key,
     nome_completo varchar not null,
