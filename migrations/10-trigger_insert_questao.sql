@@ -1,5 +1,5 @@
 -- Valida as adições de quesoes para uma maratona
-CREATE OR REPLACE TRIGGER questao_maratona_horario_validation_check() returns trigger as
+CREATE OR REPLACE FUNCTION questao_maratona_horario_validation_check() returns trigger as
 $$
 begin                
     IF(EXISTS(

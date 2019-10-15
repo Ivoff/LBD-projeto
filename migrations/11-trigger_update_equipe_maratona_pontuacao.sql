@@ -1,5 +1,5 @@
 -- Valida as adições de quesoes para uma maratona
-CREATE OR REPLACE TRIGGER update_equipe_maratona_pontuacao_check() returns trigger as
+CREATE OR REPLACE FUNCTION update_equipe_maratona_pontuacao_check() returns trigger as
 $$
 begin                
     IF(EXISTS(
