@@ -63,7 +63,7 @@ create table EquipeMaratona(
     maratona_id int not null references Maratona(id),
     equipe_id int not null references Equipe(id),
     status_equipe int not null,
-    pontuacao_final double precision not null,
+    pontuacao_final double precision not null DEFAULT 0,
     constraint equipe_maratona unique (maratona_id, equipe_id)
 );
 

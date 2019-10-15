@@ -1,25 +1,26 @@
-create or replace function questao_maratona_horario_validation() returns trigger as
+-- Valida as adições de quesoes para uma maratona
+CREATE OR REPLACE TRIGGER questao_maratona_horario_validation_check() returns trigger as
 $$
 begin                
     IF(EXISTS(
-            SELECT 1 
+            SELECT 1
             FROM Maratona
             WHERE 
             maratona.id = new.maratona_id
             AND
-            NOW() >= maratona.horario_comeco 
+            NOW() > maratona.inscricao_termino 
         )
     )
     THEN
-        raise exception 'Não é possível mudar questão de uma maratona após o inicio da mesma';
+        raise exception 'Não é possível editar questão de uma maratona após do fim do periodo de inscrição';
     END IF;
     
-    return new;
+    RETURN new;
 end;
-$$ language plpgsql;
+$$ LANGUAGE plpgsql;
 
-create trigger insert_questao_maratora_horario_validation
-before insert or update
-on MaratonaQuestoes
-for each row
-execute procedure questao_maratona_horario_validation();
+CREATE TRIGGER insert_questao_maratora_horario_validation
+BEFORE INSERT OR UPDATE
+ON MaratonaQuestoes
+FOR EACH ROW
+execute procedure questao_maratona_horario_validation_check();
