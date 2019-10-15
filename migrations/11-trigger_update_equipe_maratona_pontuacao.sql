@@ -20,7 +20,7 @@ end;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_equipe_maratona_pontuacao_trigger
-BEFORE INSERT OR UPDATE
+BEFORE UPDATE
 ON EquipeMaratona
 FOR EACH ROW
 execute procedure update_equipe_maratona_pontuacao_check();
