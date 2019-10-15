@@ -2,6 +2,8 @@
 
 Projeto prático da matéria de laboratário de banco de dados.
 
+[Link da modelagem UML.](https://www.lucidchart.com/invitations/accept/843f8d72-5024-4c64-9bec-45147d0c9ccc)
+
 ## Configurando
 
 ```
