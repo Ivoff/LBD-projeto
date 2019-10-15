@@ -1,6 +1,15 @@
 # LBD projeto
-- [ ] A equipe não pode já estar incrita na maratona.
-- [ ] Os membros não podem ser participantes da atual maratona.
-- [ ] Os membros não podem estar inscritos em equipes que já estão inscritas na atual maratona.
-- [ ] Data de incrição no período de inscrições.
-- [ ] Verificar conflito de participantes em maratonas no mesmo horário 
+
+Projeto prático da matéria de laboratário de banco de dados.
+
+## Regras para Triggers
+
+- [ ] Membros de uma equipe cadastrada na maratona não podem estar em outra equipe cadastrada na mesma maratona;
+- [ ] Membros de uma equipe cadastrada em uma maratona não podem estar em outra equipe cadastrada em outra maratona que ocorre no mesmo horário;
+- [ ] O usuário criador de uma equipe automáticamente deve ser vinculado a ela como membro;
+- [ ] As equipes participantes da maratona devem ter o mínimo de participantes necessários para realizar a inscrição;
+- [ ] As equipes devem se cadastrar a uma maratona somente durante seu período de incrição;
+- [ ] Membros não podem sair de uma equipe participante de uma maratona durante o período de sua execução;
+- [ ] Equipes participando de uma maratona não podem editar membro durante o período de sua execução;
+- [ ] Participantes não podem sair da maratona enquanto a maratona estiver em execução;
+- [ ] Equipes só podem enviar respostas as questões vinculadas a maratona durante o período de execução da maratona
