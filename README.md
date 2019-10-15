@@ -1,5 +1,7 @@
 # LBD projeto
 
+Projeto prático da matéria de laboratário de banco de dados.
+
 ## Configurando
 
 ```
@@ -17,9 +19,6 @@ Para rodar o banco execute
 ```
     run-migrations.sh
 ```
-
-
-Projeto prático da matéria de laboratário de banco de dados.
 
 ## Regras para Triggers
 
