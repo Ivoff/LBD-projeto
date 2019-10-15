@@ -8,11 +8,11 @@ begin
             WHERE 
             maratona.id = new.maratona_id
             AND
-            NOW() <= maratona.horario_termino 
+	    NOW() >= maratona.horario_termino 
         )
     )
     THEN
-        raise exception 'Pontuação só pode ser incerida após o final da maratona';
+        raise exception 'Pontuação só pode ser incerida durante a maratona';
     END IF;
     
     RETURN new;
