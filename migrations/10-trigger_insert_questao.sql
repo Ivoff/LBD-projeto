@@ -20,6 +20,6 @@ $$ language plpgsql;
 
 create trigger insert_questao_maratora_horario_validation
 before insert or update
-on equipe
+on MaratonaQuestoes
 for each row
 execute procedure questao_maratona_horario_validation();
