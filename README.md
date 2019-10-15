@@ -1,5 +1,24 @@
 # LBD projeto
 
+## Configurando
+
+```
+    cp env.example env
+```
+
+Ajuste as variaveis de conexão
+
+```
+    nano env
+```
+
+Para rodar o banco execute 
+
+```
+    run-migrations.sh
+```
+
+
 Projeto prático da matéria de laboratário de banco de dados.
 
 ## Regras para Triggers
