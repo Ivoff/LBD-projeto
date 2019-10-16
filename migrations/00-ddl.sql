@@ -45,11 +45,7 @@ create table Participante(
 
 create table Questoes(
     id serial primary key,
-<<<<<<< HEAD
     titulo varchar not null,
-=======
-    nome varchar not null,
->>>>>>> 74f8a85be9fff0ad879d0f0413847daace808d0b
     descricao varchar not null,
     entrada text not null,
     saida text,
@@ -77,13 +73,8 @@ create table EquipeMaratonaQuestao(
 	id serial primary key,
     maratona_questoes_id int references MaratonaQuestoes(id) not null,
 	equipe_id int references equipe(id) not null,
-<<<<<<< HEAD
-	maratona_id int references maratona(id) not null
-);
-=======
 	maratona_id int references maratona(id) not null,
     pontuacao_final double precision not null DEFAULT 0,
     tentativas int not null  DEFAULT 0,
     inscricao_termino timestamp with time zone not null DEFAULT CURRENT_TIMESTAMP
 );
->>>>>>> 02b667cddfcd45b66f8968a7a298abb719bed208
