@@ -68,8 +68,12 @@ create table EquipeMaratona(
 );
 
 
-create table equipequestao(
+create table EquipeMaratonaQuestao(
 	id serial primary key,
+    maratona_questoes_id int references MaratonaQuestoes(id) not null,
 	equipe_id int references equipe(id) not null,
-	maratona_id int references maratona(id) not null
+	maratona_id int references maratona(id) not null,
+    pontuacao_final double precision not null DEFAULT 0,
+    tentativas int not null  DEFAULT 0,
+    inscricao_termino timestamp with time zone not null DEFAULT CURRENT_TIMESTAMP
 );
