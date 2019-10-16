@@ -13,6 +13,6 @@ $$ language plpgsql;
 
 create trigger update_pontuacao_final_equipe
 before insert
-on equipequestao
+on EquipeMaratonaQuestao
 for each row
 execute procedure update_pontuacao_final_equipe_maratona();
