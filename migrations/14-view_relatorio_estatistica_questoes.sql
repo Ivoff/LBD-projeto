@@ -10,5 +10,5 @@ SELECT
 FROM Questoes AS Q
 INNER JOIN MaratonaQuestoes MQ ON MQ.questao_id = Q.id
 INNER JOIN EquipeMaratonaQuestao EMQ ON EMQ.maratona_questoes_id = MQ.id
-GROUP BY Q.id, EMQ.pontuacao
+GROUP BY Q.id, EMQ.pontuacao_final
 ORDER BY EMQ.pontuacao_final DESC;
