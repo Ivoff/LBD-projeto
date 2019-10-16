@@ -1,7 +1,7 @@
 CREATE VIEW MediaQuestoes AS
 SELECT 
     Q.id AS id,
-    Q.nome AS nome,
+    Q.titulo AS titulo,
     Q.descricao AS descricao,
     Q.dificuldade AS dificuldade,
     AVG(EMQ.pontuacao_final) AS media_pontuacao,
