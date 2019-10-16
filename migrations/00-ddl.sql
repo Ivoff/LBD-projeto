@@ -45,6 +45,7 @@ create table Participante(
 
 create table Questoes(
     id serial primary key,
+    titulo varchar not null,
     descricao varchar not null,
     entrada text not null,
     saida text,

@@ -5,9 +5,10 @@ $$
 		current_maratona record;
 	begin
 		select * into current_maratona from maratona where maratona.id = new.maratona_id;		
-		if (select * from maratona where maratona.horario_comeco > current_maratona.horario_comeco and maratona.horario_comeco < current_maratona.horario_termino 
-			and maratona.horario_termino > current_maratona.horario_comeco and maratona.horario_termino < current_maratona.horario_termino)
-		is not null then
+		perform * from maratona where maratona.horario_comeco > current_maratona.horario_comeco and maratona.horario_comeco < current_maratona.horario_termino 
+			and maratona.horario_termino > current_maratona.horario_comeco and maratona.horario_termino < current_maratona.horario_termino;
+		
+		if found then
 			raise exception 'inscricao na maratona selecionada gera conflito com outra maratona';
 		end if;
 		return new;
