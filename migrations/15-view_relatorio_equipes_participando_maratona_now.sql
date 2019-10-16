@@ -1,5 +1,6 @@
 CREATE VIEW EquipeMaratonaAtivoHoje AS
 SELECT 
+    Maratona.id AS maratona_id,
     E.*,
     current_date AS data
 FROM Equipe AS E
