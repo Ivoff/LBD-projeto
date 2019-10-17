@@ -1,5 +1,6 @@
 const con = require("../database/connection")();
 const maratornaFactory = require("../factory/MaratonaFactory");
+const chalk = require('chalk');
 
 const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
     let promises;
@@ -21,14 +22,14 @@ const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
         }
     }
 
-    await console.log(table + ": " + JSON.stringify(count));
+    await console.log("\t" + chalk.cyan(table + ": ") + chalk.green("Ok: " + count.Ok) + " " + chalk.red("Fail: " + count.Fail));
 };
 
 module.exports = async () => {
     const initialTime = new Date().getTime();
     await con.createConnectionAsync();
-    await ForLenghtAscyn(2000, maratornaFactory, con.insertAsync, "maratona");
+    await ForLenghtAscyn(50, maratornaFactory, con.insertAsync, "Maratona");
 
     await con.closeConnectionAsync();
-    console.log("Time spend: " + (new Date().getTime() - initialTime) + " Millis");
+    console.log("Time spend: " + chalk.blue((new Date().getTime() - initialTime) + " Millis"));
 };

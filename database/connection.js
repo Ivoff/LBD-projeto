@@ -1,5 +1,6 @@
 const metaData = require("../helpers/metaDataObject");
 const generate = require("../helpers/generateSql");
+const chalk = require('chalk');
 require('dotenv').config();
 
 const {Pool, Client} = require('pg');
@@ -22,7 +23,7 @@ module.exports = function () {
 
         closeConnectionAsync: async () => {
             await client.end();
-            console.log("disconneted");
+            console.log(chalk.green("Disconneted"));
         },
 
         insertAsync: async (option) => {
@@ -37,7 +38,7 @@ module.exports = function () {
         createConnectionAsync: async () => {
             try {
                 await client.connect();
-                console.log("connected")
+                console.log(chalk.green("Connected"));
             }catch (e) {
                 console.error('connection error', e.stack)
             }
