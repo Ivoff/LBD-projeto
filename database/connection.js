@@ -22,6 +22,7 @@ module.exports = function () {
 
         closeConnectionAsync: async () => {
             await client.end();
+            console.log("disconneted");
         },
 
         insertAsync: async (option) => {
@@ -34,10 +35,12 @@ module.exports = function () {
         },
 
         createConnectionAsync: async () => {
-            await client
-                .connect()
-                .then(e => console.log("connected"))
-                .catch(err => console.error('connection error', err.stack));
+            try {
+                await client.connect();
+                console.log("connected")
+            }catch (e) {
+                console.error('connection error', e.stack)
+            }
         }
     }
 };

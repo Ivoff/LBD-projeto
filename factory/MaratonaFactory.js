@@ -8,7 +8,7 @@ module.exports = () => {
     let horario_termino = faker.date.future(0.5,horario_comeco);
 
     return {
-        nome: faker.lorem.words(Math.random() * 10),
+        nome: faker.lorem.words(Math.random() * 20),
         imagem_url: faker.internet.avatar().split(".com")[1],
         inscricao_comeco: inscricao_comeco,
         inscricao_termino: inscricao_termino,
