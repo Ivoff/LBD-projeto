@@ -2,7 +2,7 @@ red="\e[31m"
 green="\e[32m"
 reset="\e[0m"
 
-. ./env
+. ./.env
 
 for flag in $@; do
     case $flag in

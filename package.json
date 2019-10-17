@@ -1,0 +1,24 @@
+{
+  "name": "bd-projeto",
+  "version": "1.0.0",
+  "description": "Projeto de banco de dados",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivoff/BD-projeto.git"
+  },
+  "author": "Marcus Golds, Pedro Ivo, Felipe Naufal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ivoff/BD-projeto/issues"
+  },
+  "homepage": "https://github.com/Ivoff/BD-projeto#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
+    "pg": "^7.12.1"
+  }
+}
