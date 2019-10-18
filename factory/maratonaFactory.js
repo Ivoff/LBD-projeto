@@ -4,8 +4,8 @@ module.exports = () => {
 
     let inscricao_comeco = faker.date.future();
     let inscricao_termino = faker.date.future(0.2, inscricao_comeco);
-    let horario_comeco = faker.date.future(0.4,inscricao_termino);
-    let horario_termino = faker.date.future(0.5,horario_comeco);
+    let horario_comeco = faker.date.future(0.4, inscricao_termino);
+    let horario_termino = faker.date.future(0.5, horario_comeco);
 
     return {
         nome: faker.lorem.words(Math.random() * 20),

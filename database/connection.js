@@ -29,6 +29,13 @@ module.exports = function () {
             console.log(chalk.green("\nDisconneted\n"));
         },
 
+        idMaratonaInscricaoAberta: async (id) => {
+            const sql = "SELECT 1 AS result FROM Maratona WHERE Maratona.inscricao_comeco < NOW() AND NOW() < Maratona.inscricao_termino AND Maratona.id = $1 LIMIT 1";
+
+            return (await client
+                .query(sql, [id])).rows[0] ? 1 : 0;
+        },
+
         insertAsync: async (option) => {
             let sql = generate(option);
 
@@ -42,7 +49,7 @@ module.exports = function () {
             try {
                 await client.connect();
                 console.log(chalk.green("Connected...\n"));
-            }catch (e) {
+            } catch (e) {
                 console.error('connection error', e.stack)
             }
         }

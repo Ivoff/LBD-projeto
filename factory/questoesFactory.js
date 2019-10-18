@@ -6,6 +6,6 @@ module.exports = (criadoId) => {
         descricao: faker.lorem.sentence(),
         entrada: faker.lorem.text(),
         saida: faker.lorem.text(),
-        dificuldade: Math.random() * 5
+        dificuldade: Math.random() * 5 | 0
     }
 };
