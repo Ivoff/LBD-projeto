@@ -1,8 +1,10 @@
 const con = require("../database/connection")();
 const maratornaFactory = require("../factory/MaratonaFactory");
 const chalk = require('chalk');
+const loading = require('loading-cli');
 
 const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
+    const load = loading("Seed on " + table).start();
     let promises;
     let count = {
         Ok: 0,
@@ -22,13 +24,19 @@ const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
         }
     }
 
-    await console.log("\t" + chalk.cyan(table + ": ") + chalk.green("Ok: " + count.Ok) + " " + chalk.red("Fail: " + count.Fail));
+    load.succeed("Seed complete:");
+    console.log("\t" + table + ": () => " + chalk.green(" Ok: " + count.Ok) + " " + chalk.red("Fail: " + count.Fail));
+    load.stop();
 };
 
 module.exports = async () => {
     const initialTime = new Date().getTime();
     await con.createConnectionAsync();
-    await ForLenghtAscyn(50, maratornaFactory, con.insertAsync, "Maratona");
+
+
+    // Seeds
+    await ForLenghtAscyn(200, maratornaFactory, con.insertAsync, "Maratona");
+    await ForLenghtAscyn(100, maratornaFactory, con.insertAsync, "Maratona");
 
     await con.closeConnectionAsync();
     console.log("Time spend: " + chalk.blue((new Date().getTime() - initialTime) + " Millis"));
