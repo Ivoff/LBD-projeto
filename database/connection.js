@@ -17,8 +17,11 @@ module.exports = function () {
     );
 
     return {
-        commit: () => {
+        getRandomIdFromAsync: async (table) => {
+            const sql = "SELECT id FROM " + table + " ORDER BY RANDOM() LIMIT 1";
 
+            return (await client
+                .query(sql)).rows[0].id;
         },
 
         closeConnectionAsync: async () => {
@@ -38,7 +41,7 @@ module.exports = function () {
         createConnectionAsync: async () => {
             try {
                 await client.connect();
-                console.log(chalk.green("Connected..."));
+                console.log(chalk.green("Connected...\n"));
             }catch (e) {
                 console.error('connection error', e.stack)
             }
