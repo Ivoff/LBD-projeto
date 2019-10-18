@@ -5,9 +5,9 @@ create table Perfil(
     siapi varchar not null unique,
     cpf varchar not null unique,
     codigo_uri varchar not null unique,
-    status_participante boolean not null,
-    status_voluntario boolean not null,
-    status_tecnico boolean not null
+    status_participante boolean not null default false,
+    status_voluntario boolean not null default false,
+    status_tecnico boolean not null default false
 );
 
 
