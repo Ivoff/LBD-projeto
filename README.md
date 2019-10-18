@@ -5,19 +5,38 @@ Projeto prático da matéria de laboratário de banco de dados. O objetivo do pr
 ## Configurando
 
 ```
-    cp env.example env
+cp env.example env
 ```
 
 Ajuste as variaveis de conexão
 
 ```
-    nano env
+nano env
 ```
 
 Para rodar o banco execute 
 
 ```
-    ./run-migrations.sh
+npm run migrations
+```
+
+Para popular o banco
+
+```
+npm run seed
+```
+
+Para buildar o banco novamente e popular novamente
+
+```
+npm run rebase 
+```
+
+Para ver as opções
+
+```
+npm run start 
+npm run start -h
 ```
 
 ## Regras para Triggers

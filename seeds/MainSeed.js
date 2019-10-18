@@ -1,7 +1,11 @@
 const con = require("../database/connection")();
-const maratornaFactory = require("../factory/MaratonaFactory");
+// Visual
 const chalk = require('chalk');
 const loading = require('loading-cli');
+// Factorys
+const maratornaFactory = require("../factory/MaratonaFactory");
+const perfilFactory = require("../factory/PerfilFactory");
+const participanteFactory = require("../factory/ParticipanteFactory");
 
 const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
     const load = loading("Seed on " + table).start();
@@ -15,7 +19,7 @@ const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
         // Tratando cada inserção individualmente para casos de ferir os triggers
         try {
             await includeAsync({
-                object: generate(),
+                object: await generate(),
                 table: table
             });
             count.Ok++;
@@ -35,9 +39,10 @@ module.exports = async () => {
 
 
     // Seeds
-    await ForLenghtAscyn(200, maratornaFactory, con.insertAsync, "Maratona");
-    await ForLenghtAscyn(100, maratornaFactory, con.insertAsync, "Maratona");
+    await ForLenghtAscyn(20, maratornaFactory, con.insertAsync, "Maratona");
+    await ForLenghtAscyn(20, perfilFactory, con.insertAsync, "Perfil");
+    await ForLenghtAscyn(20, participanteFactory(con.getRandomIdFromAsync), con.insertAsync, "Participante");
 
     await con.closeConnectionAsync();
-    console.log("Time spend: " + chalk.blue((new Date().getTime() - initialTime) + " Millis"));
+    console.log("Time spend on seed: " + chalk.blue((new Date().getTime() - initialTime) + " Millis"));
 };

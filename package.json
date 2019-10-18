@@ -4,7 +4,11 @@
   "description": "Projeto de banco de dados",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebase": "node ./index.js migrations --seed",
+    "seed": "node ./index.js seed",
+    "migration": "node ./index.js migrations",
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +22,12 @@
   "homepage": "https://github.com/Ivoff/BD-projeto#readme",
   "dependencies": {
     "chalk": "^2.4.2",
+    "commander": "^3.0.2",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
     "figlet": "^1.2.4",
     "loading-cli": "^1.0.8",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "shelljs": "^0.8.3"
   }
 }
