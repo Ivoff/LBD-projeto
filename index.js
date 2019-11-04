@@ -3,11 +3,9 @@ const figlet = require("figlet");
 const chalk = require('chalk');
 const program = require('commander');
 const shell = require('shelljs');
+const {version} = require('./package.json');
 
-console.log(figlet.textSync('BD - projeto', {
-    horizontalLayout: 'default',
-    verticalLayout: 'default'
-}));
+console.log(figlet.textSync('BD - projeto'));
 
 // Drop and run all migrations
 
@@ -16,16 +14,12 @@ console.log(figlet.textSync('BD - projeto', {
 // Parametros da CLI
 program
     .description("Cli só para popular ou rodar as migrations, boa sorte...")
-    .version('0.1.0');
+    .version(version);
 
 program
     .command("seed")
     .description("Run all the seeders")
-    .action(() => {
-        (async () => {
-            await mainSeed();
-        })();
-    });
+    .action(mainSeed);
 
 program
     .command("migrations")
@@ -37,9 +31,7 @@ program
         console.log();
 
         if (obj.seed) {
-            (async () => {
-                await mainSeed();
-            })();
+            mainSeed()
         }
     });
 

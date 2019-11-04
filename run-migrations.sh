@@ -28,12 +28,12 @@ for MIGRATION in migrations/*; do
     #     continue
     # fi
 
-    echo "${green}Executando${reset}: ${MIGRATION}";
+    echo -e "${green}Executando${reset}: ${MIGRATION}";
     PGPASSWORD=$PGPASSWORD psql -v ON_ERROR_STOP=1 -h $HOST -d $DB_DATABASE -U $DB_USERNAME -p $PORT -f "$MIGRATION"
     if [ $? -ne 0 ]; then
-        echo "${red}Encerrando devido a erro${reset}";
+        echo -e "${red}Encerrando devido a erro${reset}";
         break;
     else
-        echo "${green}Sucesso!${reset}";
+        echo -e "${green}Sucesso!${reset}";
     fi
 done;

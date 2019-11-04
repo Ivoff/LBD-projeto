@@ -1,42 +1,44 @@
-const con = require("../database/connection")();
 // Visual
 const chalk = require('chalk');
 const loading = require('loading-cli');
-// Factorys
-const maratornaFactory = require("../factory/maratonaFactory");
+
+
+const con = require("../database/connection")();
+
+// Factories
+const maratonaFactory = require("../factory/maratonaFactory");
 const perfilFactory = require("../factory/perfilFactory");
 const questoesFactory = require("../factory/questoesFactory");
-// Factorys compostos
+
+// Factories compostos
 const maratonaQuestoesFactory = require("../factory/maratonaQuestoesFactory")(con.getRandomIdFromAsync);
 const participanteFactory = require("../factory/participanteFactory")(con.getRandomIdFromAsync);
 const equipeFactory = require("../factory/equipeFactory")(con.getRandomIdFromAsync);
 const membroFactory = require("../factory/membroFactory")(con.getRandomIdFromAsync);
 const equipeMaratonaFactory = require("../factory/equipeMaratonaFactory")(con.getRandomIdFromAsync);
 
-const ForLenghtAscyn = async (lenght, generate, includeAsync, table) => {
-    const load = loading("Seed on " + table).start();
-    let promises;
-    let count = {
-        Ok: 0,
-        Fail: 0
-    };
 
-    for (let i = 0; i < lenght; i++) {
+const ForLengthAsync = async (length, generate, includeAsync, table) => {
+    const load = loading(`Seed on ${table}`).start();
+    const count = {ok: 0, err: 0};
+    const errMsgs = {};
+
+    for (let i = 0; i < length; i++) {
         // Tratando cada inserção individualmente para casos de ferir os triggers
         const objectConcrete = await generate();
         try {
-            await includeAsync({
-                object: objectConcrete,
-                table: table
-            });
-            count.Ok++;
+            await includeAsync({object: objectConcrete, table});
+            count.ok++;
         } catch (e) {
-            count.Fail++
+            if (errMsgs[e.message]) errMsgs[e.message] += 1;
+            else errMsgs[e.message] = 1;
+            count.err++;
         }
     }
 
     load.succeed("Seed complete:");
-    console.log("\t" + table + ": () => " + chalk.green(" Ok: " + count.Ok) + " " + chalk.red("Fail: " + count.Fail));
+    console.log(`\t[${table}] ${chalk.green(`${count.ok} OK`)}; ${chalk.red(`${count.err} Errors`)}.`);
+    Object.entries(errMsgs).forEach(([err, qtd]) => console.log(`\t\t${qtd}x ${err}`))
     load.stop();
 };
 
@@ -44,18 +46,19 @@ module.exports = async () => {
     const initialTime = new Date().getTime();
     await con.createConnectionAsync();
 
-
     // Seeds
-    await ForLenghtAscyn(20, maratornaFactory, con.insertAsync, "Maratona");
-    await ForLenghtAscyn(20, perfilFactory, con.insertAsync, "Perfil");
-    await ForLenghtAscyn(20, questoesFactory, con.insertAsync, "Questoes");
+    await ForLengthAsync(20, maratonaFactory, con.insertAsync, "Maratona");
+    await ForLengthAsync(20, perfilFactory, con.insertAsync, "Perfil");
+    await ForLengthAsync(20, questoesFactory, con.insertAsync, "Questoes");
+
     // Campos que precisam de dados do banco
-    await ForLenghtAscyn(20, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
-    await ForLenghtAscyn(20, participanteFactory, con.insertAsync, "Participante");
-    await ForLenghtAscyn(20, equipeFactory, con.insertAsync, "Equipe");
-    await ForLenghtAscyn(20, membroFactory, con.insertAsync, "Membro");
-    await ForLenghtAscyn(20, equipeMaratonaFactory, con.insertAsync, "EquipeMaratona");
+    await ForLengthAsync(20, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
+    await ForLengthAsync(20, participanteFactory, con.insertAsync, "Participante");
+    await ForLengthAsync(20, equipeFactory, con.insertAsync, "Equipe");
+    await ForLengthAsync(20, membroFactory, con.insertAsync, "Membro");
+    await ForLengthAsync(20, equipeMaratonaFactory, con.insertAsync, "EquipeMaratona");
 
     await con.closeConnectionAsync();
-    console.log("Time spend on seed: " + chalk.blue((new Date().getTime() - initialTime) + " Millis"));
+    const timeOnSeed = new Date().getTime() - initialTime;
+    console.log(`Time spend on seed: ${chalk.blue(`${timeOnSeed} Millis`)}`);
 };

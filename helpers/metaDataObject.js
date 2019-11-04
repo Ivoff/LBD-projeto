@@ -1,10 +1,10 @@
 module.exports = {
-    getAtributes: (object) => {
-        let atributes = "";
+    getAttributes: (object) => {
+        let attributes = "";
         for (let prop in object) {
-            atributes += prop + ",";
+            attributes += prop + ",";
         }
-        return atributes.substring(0, atributes.length - 1);
+        return attributes.substring(0, attributes.length - 1);
     },
     getValues: (object) => {
         let values = [];
