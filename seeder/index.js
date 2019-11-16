@@ -3,19 +3,19 @@ const chalk = require('chalk');
 const loading = require('loading-cli');
 
 
-const con = require("../database/connection")();
+const con = require("./database/connection").default();
 
 // Factories
-const maratonaFactory = require("../factory/maratonaFactory");
-const perfilFactory = require("../factory/perfilFactory");
-const questoesFactory = require("../factory/questoesFactory");
+const maratonaFactory = require("./factory/maratonaFactory");
+const perfilFactory = require("./factory/perfilFactory").default;
+const questoesFactory = require("./factory/questoesFactory");
 
 // Factories compostos
-const maratonaQuestoesFactory = require("../factory/maratonaQuestoesFactory")(con.getRandomIdFromAsync);
-const participanteFactory = require("../factory/participanteFactory")(con.getRandomIdFromAsync);
-const equipeFactory = require("../factory/equipeFactory")(con.getRandomIdFromAsync);
-const membroFactory = require("../factory/membroFactory")(con.getRandomIdFromAsync);
-const equipeMaratonaFactory = require("../factory/equipeMaratonaFactory")(con.getRandomIdFromAsync);
+const maratonaQuestoesFactory = require("./factory/maratonaQuestoesFactory")(con.getRandomIdFromAsync);
+const participanteFactory = require("./factory/participanteFactory")(con.getRandomIdFromAsync);
+const equipeFactory = require("./factory/equipeFactory")(con.getRandomIdFromAsync);
+const membroFactory = require("./factory/membroFactory")(con.getRandomIdFromAsync);
+const equipeMaratonaFactory = require("./factory/equipeMaratonaFactory")(con.getRandomIdFromAsync);
 
 
 const ForLengthAsync = async (length, generate, includeAsync, table) => {
