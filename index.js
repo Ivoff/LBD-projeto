@@ -1,8 +1,6 @@
 const mainSeed = require("./seeds/MainSeed");
 const figlet = require("figlet");
-const chalk = require('chalk');
 const program = require('commander');
-const shell = require('shelljs');
 const {version} = require('./package.json');
 
 console.log(figlet.textSync('BD - projeto'));
