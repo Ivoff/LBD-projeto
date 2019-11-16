@@ -47,9 +47,11 @@ module.exports = async () => {
     await con.createConnectionAsync();
 
     // Seeds
-    await ForLengthAsync(20, maratonaFactory, con.insertAsync, "Maratona");
-    await ForLengthAsync(20, perfilFactory, con.insertAsync, "Perfil");
-    await ForLengthAsync(20, questoesFactory, con.insertAsync, "Questoes");
+    await Promise.all([
+        ForLengthAsync(20, maratonaFactory, con.insertAsync, "Maratona"),
+        ForLengthAsync(20, perfilFactory, con.insertAsync, "Perfil"),
+        ForLengthAsync(20, questoesFactory, con.insertAsync, "Questoes"),
+    ]);
 
     // Campos que precisam de dados do banco
     await ForLengthAsync(20, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
