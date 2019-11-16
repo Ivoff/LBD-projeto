@@ -21,19 +21,4 @@ program
     .description("Run all the seeders")
     .action(mainSeed);
 
-program
-    .command("migrations")
-    .description("Drop and run all migrations")
-    .option('-s, --seed', 'Run all the seeders')
-    .action((obj) => {
-        console.log(chalk.red("Clean migrations...\n"));
-        shell.exec("./run-migrations.sh");
-        console.log();
-
-        if (obj.seed) {
-            mainSeed()
-        }
-    });
-
-
 program.parse(process.argv);
