@@ -1,4 +1,4 @@
-const mainSeed = require("./seeds/MainSeed");
+const mainSeed = require("./seeder/index");
 const figlet = require("figlet");
 const program = require('commander');
 const {version} = require('./package.json');
