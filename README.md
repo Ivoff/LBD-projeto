@@ -39,6 +39,13 @@ npm run start
 npm run start -h
 ```
 
+## TODO:
+
+- [ ] Arrumar Indices
+- [ ] Ajustar Views
+- [ ] Plano fisico
+- [ ] Especificações da intancia do banco
+
 ## Regras para Triggers
 
 - [x] Membros de uma equipe cadastrada na maratona não podem estar em outra equipe cadastrada na mesma maratona;
