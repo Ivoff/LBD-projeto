@@ -10,12 +10,6 @@ RUN npm install
 
 COPY . .
 
-COPY --chown=node:node . .
-
 USER node
 
-EXPOSE 3000
-
-RUN npm run build
-
-ENTRYPOINT node seeder/index.js
+ENTRYPOINT npm run seed

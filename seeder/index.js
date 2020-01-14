@@ -3,11 +3,11 @@ const chalk = require('chalk');
 const loading = require('loading-cli');
 
 
-const con = require("./database/connection").default();
+const con = require("./database/connection")();
 
 // Factories
 const maratonaFactory = require("./factory/maratonaFactory");
-const perfilFactory = require("./factory/perfilFactory").default;
+const perfilFactory = require("./factory/perfilFactory");
 const questoesFactory = require("./factory/questoesFactory");
 
 // Factories compostos
@@ -48,17 +48,17 @@ module.exports = async () => {
 
     // Seeds
     await Promise.all([
-        ForLengthAsync(200, maratonaFactory, con.insertAsync, "Maratona"),
-        ForLengthAsync(200, perfilFactory, con.insertAsync, "Perfil"),
-        ForLengthAsync(200, questoesFactory, con.insertAsync, "Questoes"),
+        ForLengthAsync(200, maratonaFactory, con.insertAsync, "maratona"),
+        ForLengthAsync(200, perfilFactory, con.insertAsync, "perfil"),
+        ForLengthAsync(200, questoesFactory, con.insertAsync, "questoes"),
     ]);
 
     // Campos que precisam de dados do banco
-    await ForLengthAsync(200, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
-    await ForLengthAsync(200, participanteFactory, con.insertAsync, "Participante");
-    await ForLengthAsync(200, equipeFactory, con.insertAsync, "Equipe");
-    await ForLengthAsync(200, membroFactory, con.insertAsync, "Membro");
-    await ForLengthAsync(200, equipeMaratonaFactory, con.insertAsync, "EquipeMaratona");
+    await ForLengthAsync(200, maratonaQuestoesFactory, con.insertAsync, "maratonaQuestoes");
+    await ForLengthAsync(200, participanteFactory, con.insertAsync, "participante");
+    await ForLengthAsync(200, equipeFactory, con.insertAsync, "equipe");
+    await ForLengthAsync(200, membroFactory, con.insertAsync, "membro");
+    await ForLengthAsync(200, equipeMaratonaFactory, con.insertAsync, "equipeMaratona");
 
     await con.closeConnectionAsync();
     const timeOnSeed = new Date().getTime() - initialTime;

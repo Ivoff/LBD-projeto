@@ -35,7 +35,6 @@ module.exports = function () {
 
         insertAsync: async (option) => {
             let sql = generate(option);
-
             let data = metaData.getValues(option.object);
 
             return (await client.query(sql, data)).rows[0]
