@@ -48,17 +48,17 @@ module.exports = async () => {
 
     // Seeds
     await Promise.all([
-        ForLengthAsync(20, maratonaFactory, con.insertAsync, "Maratona"),
-        ForLengthAsync(20, perfilFactory, con.insertAsync, "Perfil"),
-        ForLengthAsync(20, questoesFactory, con.insertAsync, "Questoes"),
+        ForLengthAsync(200, maratonaFactory, con.insertAsync, "Maratona"),
+        ForLengthAsync(200, perfilFactory, con.insertAsync, "Perfil"),
+        ForLengthAsync(200, questoesFactory, con.insertAsync, "Questoes"),
     ]);
 
     // Campos que precisam de dados do banco
-    await ForLengthAsync(20, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
-    await ForLengthAsync(20, participanteFactory, con.insertAsync, "Participante");
-    await ForLengthAsync(20, equipeFactory, con.insertAsync, "Equipe");
-    await ForLengthAsync(20, membroFactory, con.insertAsync, "Membro");
-    await ForLengthAsync(20, equipeMaratonaFactory, con.insertAsync, "EquipeMaratona");
+    await ForLengthAsync(200, maratonaQuestoesFactory, con.insertAsync, "MaratonaQuestoes");
+    await ForLengthAsync(200, participanteFactory, con.insertAsync, "Participante");
+    await ForLengthAsync(200, equipeFactory, con.insertAsync, "Equipe");
+    await ForLengthAsync(200, membroFactory, con.insertAsync, "Membro");
+    await ForLengthAsync(200, equipeMaratonaFactory, con.insertAsync, "EquipeMaratona");
 
     await con.closeConnectionAsync();
     const timeOnSeed = new Date().getTime() - initialTime;
