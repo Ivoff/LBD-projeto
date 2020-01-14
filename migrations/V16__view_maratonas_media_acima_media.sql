@@ -17,8 +17,6 @@ from
 	(
 		select avg(questoes.dificuldade)
 		from questoes, maratona, equipemaratona
-		where questoes.id = 
-		
 	) as media_dificuldade_questao_por_maratona,
 	maratona, equipemaratona, participante
 where 
